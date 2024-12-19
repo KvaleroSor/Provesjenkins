@@ -3,7 +3,7 @@ pipeline {
     tools{
         nodejs 'Node Js'
     }
-    parametres{
+    parameters{
         string(name: 'persona_a_saludar', defaultValue: 'user', description: 'Persona a saludar')
     }
 
