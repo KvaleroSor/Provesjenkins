@@ -1,10 +1,16 @@
 pipeline {
     agent any
+    tools{
+        nodejs 'Node Js'
+    }
+    parametres{
+        string(name: 'persona_a_saludar', defaultValue: 'user', description: 'Persona a saludar')
+    }
 
     stages {
         stage('Saludo') {
             steps {
-                echo 'Hola mundo'
+                sh "node index.js '${params.persona_a_saludar}'"
             }
         }
     }
