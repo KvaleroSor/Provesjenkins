@@ -6,9 +6,9 @@ pipeline {
     parameters {
         string(name: 'persona_a_saludar', defaultValue: 'user', description: 'Persona a saludar')
     }
-    triggers{
-        cron('*/5 * * * *')
-    }
+    // triggers{
+    //     cron('*/5 * * * *')
+    // }
 
     stages {
         stage('Execution') {
