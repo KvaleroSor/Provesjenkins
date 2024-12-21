@@ -23,7 +23,7 @@ pipeline {
         stage('Parametro-1') {
             steps {
                 script {
-                    env.resultat_stage1 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro-1}'", returnStdout: true)
+                    env.resultat_stage1 = sh(script: "node jenkinsScripts/index.js '${params.parametro-1}'", returnStdout: true)
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('Parametro-2') {
             steps {
                 script {
-                    env.resultat_stage2 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro-2}'", returnStdout: true)
+                    env.resultat_stage2 = sh(script: "node jenkinsScripts/index.js '${params.parametro-2}'", returnStdout: true)
                 }
             }
         }
