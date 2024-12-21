@@ -8,22 +8,16 @@ pipeline {
     }
 
     stages {
-        stage('Execucio') {
+        stage('Persona a saludar') {
             steps {
-                sh 'node index.js'
-            }
-        }
-
-        stage('Persona a saludar'){
-            steps{
-                sh "node index.js ${params.persona_a_saludar}"
+                sh "node index.js '${params.persona_a_saludar}'"
             }
         }
 
         stage('Parametro-1') {
             steps {
                 script {
-                    env.resultat_stage1 = sh(script: "node jenkinsScripts/index.js '${params.parametro-1}'", returnStdout: true)
+                    env.resultat_stage1 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro-1}'", returnStdout: true)
                     echo "Resultat stage1 = ${env.resultat_stage1}"
                 }
             }
@@ -32,7 +26,7 @@ pipeline {
         stage('Parametro-2') {
             steps {
                 script {
-                    env.resultat_stage2 = sh(script: "node jenkinsScripts/index.js '${params.parametro-2}'", returnStdout: true)
+                    env.resultat_stage2 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro-2}'", returnStdout: true)
                     echo "Resultat stage2 = ${env.resultat_stage2}"
                 }
             }
