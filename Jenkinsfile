@@ -3,8 +3,8 @@ pipeline {
     tools { nodejs 'Node Js' }
     parameters {
         string(name: 'persona_a_saludar', defaultValue: 'user', description: 'Nombre de la persona a saludar')
-        booleanParam(name: 'parametro-1', defaultValue: 'true', description: 'Parametro 1')
-        booleanParam(name: 'parametro-2', defaultValue: 'false', description: 'Parametro 2')
+        string(name: 'parametro-1', defaultValue: 'true', description: 'Parametro 1')
+        string(name: 'parametro-2', defaultValue: 'false', description: 'Parametro 2')
     }
 
     stages {
