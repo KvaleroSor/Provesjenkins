@@ -3,8 +3,8 @@ pipeline {
     tools { nodejs 'Node Js' }
     parameters {
         string(name: 'persona_a_saludar', defaultValue: 'user', description: 'Nombre de la persona a saludar')
-        booleanParam(name: 'parametro-1', defaultValue: true, description: 'Parametro 1')
-        booleanParam(name: 'parametro-2', defaultValue: false, description: 'Parametro 2')
+        booleanParam(name: 'parametro-1', defaultValue: 'true', description: 'Parametro 1')
+        booleanParam(name: 'parametro-2', defaultValue: 'false', description: 'Parametro 2')
     }
 
     stages {
@@ -23,7 +23,7 @@ pipeline {
         stage('Executant parametre 1') {
             steps {
                 script {
-                    env.resultat_stage1 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro-1}'", returnStdout: true).trim()
+                    env.resultat_stage1 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro-1}'", returnStdout: true)
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('Executant parametre 2') {
             steps {
                 script {
-                    env.resultat_stage2 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro-2}'", returnStdout: true).trim()
+                    env.resultat_stage2 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro-2}'", returnStdout: true)
                 }
             }
         }
