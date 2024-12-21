@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Executant parametre 1') {
+        stage('Parametro-1') {
             steps {
                 script {
                     env.resultat_stage1 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro-1}'", returnStdout: true)
@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Executant parametre 2') {
+        stage('Parametro-2') {
             steps {
                 script {
                     env.resultat_stage2 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro-2}'", returnStdout: true)
