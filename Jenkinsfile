@@ -14,6 +14,12 @@ pipeline {
             }
         }
 
+        stage('Persona a saludar'){
+            steps{
+                sh "node index.js ${params.persona_a_saludar}"
+            }
+        }
+
         stage('Executant parametre 1') {
             steps {
                 script {
