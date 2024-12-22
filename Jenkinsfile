@@ -19,7 +19,7 @@ pipeline {
         stage('Parametro-1') {
             steps {
                 script {
-                    env.resultat_stage1 = sh(script: "node index.js '${params.parametro1}'", returnStatus: true)
+                    env.resultat_stage1 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro1}'", returnStatus: true)
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
         stage('Parametro-2') {
             steps {
                 script {
-                    env.resultat_stage2 = sh(script: "node index.js '${params.parametro2}'", returnStatus: true)
+                    env.resultat_stage2 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro2}'", returnStatus: true)
                 }
             }
         }
