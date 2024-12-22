@@ -52,7 +52,7 @@ pipeline {
     }
     post {
         always {
-            script('Enviar missatge a telegram') {
+            script {
                 sh "npm install node-telegram-bot-api"
                 sh "node ./jenkinsScripts/indexBotTelegram.js '${params.chatId} ${env.resultat_msg}'"
             }
