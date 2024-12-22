@@ -4,8 +4,8 @@ pipeline {
         nodejs 'Node Js'
     }
     parameters {
-        string(name: 'chatId', defaultValue: 'num_chat', description: 'Chat ID de Telegram')
-        string(name: 'telegamBotToken', defaultValue: 'token', description: 'Token del bot de Telegram')
+        string(credentialsId: 'chatId', variable: 'CHAT_ID')
+        string(credentialsId: 'BotToken', variable: 'BOT_TOKEN')
         string(name: 'parametro1', defaultValue: 'true', description: 'Parametro 1')
         string(name: 'parametro2', defaultValue: 'false', description: 'Parametro 2')
     }
