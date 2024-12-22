@@ -4,28 +4,57 @@ pipeline {
         nodejs 'Node Js'
     }
     parameters {
-        string(name: 'persona_a_saludar', defaultValue: 'user', description: 'Persona a saludar')
+        string(name: 'chatId', defaultValue: 'num_chat', description: 'Chat ID de Telegram')
+        string(name: 'parametro1', defaultValue: 'true', description: 'Parametro 1')
+        string(name: 'parametro2', defaultValue: 'false', description: 'Parametro 2')
     }
 
     stages {
-        stage('Execution') {
+        stage('Instal·lant dependències') {
             steps {
-                sh "node index.js '${params.persona_a_saludar}'"
+                sh 'npm install'
             }
         }
 
-        stage('Exemple Paralel') {
-            parallel {
-                stage('Text 1') {
-                    steps {
-                        echo 'Executant stage 1'
+        stage('Parametro-1') {
+            steps {
+                script {
+                    env.resultat_stage1 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro1}'", returnStatus: true)
+                }
+            }
+        }
+
+        stage('Parametro-2') {
+            steps {
+                script {
+                    env.resultat_stage2 = sh(script: "node ./jenkinsScripts/index.js '${params.parametro2}'", returnStatus: true)
+                }
+            }
+        }
+
+        stage('Mostrant resultat') {
+            steps {
+                script {
+                    echo env.resultat_stage1
+                    if (env.resultat_stage1 == '0' && env.resultat_stage2 == '0') {
+                        env.resutat_msg = 'El projecte va viento en popa.'
+                        sh "echo '${env.resutat_msg}'"
+                    } else if (env.resultat_stage1 != '0' && env.resultat_stage2 != '0') {
+                        env.resutat_msg = 'Esto pinta muy mal.'
+                        sh "echo '${env.resutat_msg}'"
+                    } else {
+                        env.resutat_msg = 'Alguno de les stages ha fallat.'
+                        sh "echo '${env.resutat_msg}'"
                     }
                 }
-                stage('Text 2') {
-                    steps {
-                        echo 'Executant stage 2'
-                    }
-                }
+            }
+        }
+    }
+    post {
+        always {
+            script('Enviar missatge a telegram') {
+                sh "npm install node-telegram-bot-api"
+                sh "node ./jenkinsScripts/indexBotTelegram.js '${params.chatId} ${env.resultat_msg}'"
             }
         }
     }
