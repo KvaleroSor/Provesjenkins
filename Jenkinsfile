@@ -55,10 +55,11 @@ pipeline {
                 withCredentials([
                     string(credentialsId: 'chatId', variable: 'CHAT_ID'),
                     string(credentialsId: 'BotToken', variable: 'BOT_TOKEN')
-                ])
-                sh "npm install node-telegram-bot-api"
-                echo "CHAT_ID: ${CHAT_ID}, BOT_TOKEN: ${BOT_TOKEN}"
-                sh "node ./jenkinsScripts/indexBotTelegram.js '${params.chatId} ${env.resultat_msg}'"
+                ]) {
+                    sh 'npm install node-telegram-bot-api'
+                    echo "CHAT_ID: ${CHAT_ID}, BOT_TOKEN: ${BOT_TOKEN}"
+                    sh "node ./jenkinsScripts/indexBotTelegram.js '${params.chatId} ${env.resultat_msg}'"
+                }
             }
         }
     }
