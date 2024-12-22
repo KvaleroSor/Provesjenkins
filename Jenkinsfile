@@ -57,7 +57,7 @@ pipeline {
     post{
         always{
             script{
-                sh "node ./jenkinsScripts/sendMessage.js '${env.resutat_msg}' '${env.CAHT_ID}' '${env.BOT_TOKEN}' "
+                sh "node ./jenkinsScripts/indexBotTelegram.js '${env.resutat_msg}' '${env.CAHT_ID}' '${env.BOT_TOKEN}' "
             }
         }   
     }
