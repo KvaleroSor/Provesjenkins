@@ -58,7 +58,7 @@ pipeline {
                 ]) {
                     sh 'npm install node-telegram-bot-api'
                     echo "CHAT_ID: ${CHAT_ID}, BOT_TOKEN: ${BOT_TOKEN}"
-                    sh "'CHAT_ID=${env.CHAT_ID}' 'BOT_TOKEN=${env.BOT_TOKEN}' node ./jenkinsScripts/indexBotTelegram.js '${params.chatId} ${env.resultat_msg}'"
+                    sh "'CHAT_ID=${env.CHAT_ID}' 'BOT_TOKEN=${env.BOT_TOKEN}' && node ./jenkinsScripts/indexBotTelegram.js '${params.chatId} ${env.resultat_msg}'"
                 }
             }
         }
