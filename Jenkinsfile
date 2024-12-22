@@ -8,7 +8,7 @@ pipeline {
     //     BOT_TOKEN = credentials('BotToken')
     // }
     parameters {
-        string(name: 'chatId', defaultValue: 'num_chat', description: 'Chat ID')
+        // string(name: 'chatId', defaultValue: 'num_chat', description: 'Chat ID')
         string(name: 'parametro1', defaultValue: 'true', description: 'Parametro 1')
         string(name: 'parametro2', defaultValue: 'false', description: 'Parametro 2')
     }
