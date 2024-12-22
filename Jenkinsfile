@@ -57,6 +57,7 @@ pipeline {
     post{
         always{
             script{
+                sh 'npm install node-telegram-bot-api'
                 sh "node ./jenkinsScripts/indexBotTelegram.js '${env.resutat_msg}' '${env.CAHT_ID}' '${env.BOT_TOKEN}' "
             }
         }   
