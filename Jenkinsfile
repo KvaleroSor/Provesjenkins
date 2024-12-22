@@ -3,11 +3,12 @@ pipeline {
     tools {
         nodejs 'Node Js'
     }
-    environment {
-        CHAT_ID = credentials('chatId')
-        BOT_TOKEN = credentials('BotToken')
-    }
+    // environment {
+    //     CHAT_ID = credentials('chatId')
+    //     BOT_TOKEN = credentials('BotToken')
+    // }
     parameters {
+        string(name: 'chatId', defaultValue: 'num_chat', description: 'Chat ID')
         string(name: 'parametro1', defaultValue: 'true', description: 'Parametro 1')
         string(name: 'parametro2', defaultValue: 'false', description: 'Parametro 2')
     }
@@ -57,7 +58,7 @@ pipeline {
         always {
             script {
                 sh 'npm install node-telegram-bot-api'
-                sh "node ./jenkinsScripts/indexBotTelegram.js '${params.chatId} ${env.resultat_msg}'"
+                sh "node ./jenkinsScripts/indexBotTelegram.js '${env.resultat_msg}' '${params.chatId}'"
             }
         }
     }
