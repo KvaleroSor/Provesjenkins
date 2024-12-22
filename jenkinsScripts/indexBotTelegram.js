@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
-const chatId = CHAT_ID;
-const botToken = BOT_TOKEN;
+const chatId = process.env.CHAT_ID;
+const botToken = process.env.BOT_TOKEN;
 const bot = new TelegramBot(botToken, {polling: true});
 const msg = process.argv[2];
 
